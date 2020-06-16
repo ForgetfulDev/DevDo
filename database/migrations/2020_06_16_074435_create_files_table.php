@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanesTable extends Migration
+class CreateFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateLanesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lanes', function (Blueprint $table) {
+        Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('board_id');
+            $table->unsignedBigInteger('card_id');
             $table->string('name');
-            $table->string('description');
             $table->timestamps();
             $table->softDeletesTz();
 
-            $table->foreign('board_id')->references('id')->on('boards');
+            $table->foreign('card_id')->references('id')->on('cards');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateLanesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lanes');
+        Schema::dropIfExists('files');
     }
 }
