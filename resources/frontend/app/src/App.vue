@@ -15,7 +15,7 @@
             <template slot="end">
                 <b-navbar-item tag="div">
                     <div class="buttons">
-                        <a class="button is-light">
+                        <a href="login" class="button is-light">
                             Log In
                         </a>
                     </div>
