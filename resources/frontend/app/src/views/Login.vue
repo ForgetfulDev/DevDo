@@ -1,4 +1,5 @@
 <template>
+<ValidationObserver ref="observer" v-slot="{ passes }">
   <section class="section">
     <div class="container">
       <div class="columns">
@@ -25,9 +26,12 @@
       </div>
     </div>
   </section>
+</ValidationObserver>
 </template>
 
 <script>
+import { ValidationObserver } from "vee-validate";
+
 export default {
   data: () => ({
     email: null,
