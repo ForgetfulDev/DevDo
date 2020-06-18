@@ -1,33 +1,37 @@
 <template>
-  <section>
-    <b-field label="Name">
-      <b-input v-model="name"></b-input>
-    </b-field>
-
-    <b-field label="Email" type="is-danger" message="This email is invalid">
-      <b-input type="email" value="john@" maxlength="30"></b-input>
-    </b-field>
-
-    <b-field label="Username" type="is-success" message="This username is available">
-      <b-input value="johnsilver" maxlength="30"></b-input>
-    </b-field>
-
-    <b-field label="Password">
-      <b-input type="password" value="iwantmytreasure" password-reveal></b-input>
-    </b-field>
-
-    <b-field label="Message">
-      <b-input maxlength="200" type="textarea"></b-input>
-    </b-field>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" v-model="email" type="email" placeholder="Email" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <b-field label="Password">
+            <b-input type="password" v-model="password" password-reveal></b-input>
+          </b-field>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      name: "John Silver"
-    };
-  }
+  data: () => ({
+    email: null,
+    password: null
+  })
 };
 </script>
