@@ -1,4 +1,11 @@
 <template>
+<v-container>
+    <v-row>
+        <v-col>
+            <v-btn class="float-right">Login</v-btn>
+        </v-col>
+    </v-row>
+</v-container>
 </template>
 
 <script>
