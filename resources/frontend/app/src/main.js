@@ -3,14 +3,15 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
+import vuetify from "./plugins/vuetify";
+import "roboto-fontface/css/roboto/roboto-fontface.css";
+import "@fortawesome/fontawesome-free/css/all.css";
 
-Vue.use(Buefy)
 Vue.config.productionTip = false;
 
 new Vue({
     router,
     store,
+    vuetify,
     render: h => h(App)
 }).$mount("#app");
