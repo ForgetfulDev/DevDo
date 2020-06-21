@@ -12,13 +12,8 @@ module.exports = {
             allowedPlugins: ["define"]
         }
     },
-
-    // output built static files to Laravel's public dir.
-    // note the "build" script in package.json needs to be modified as well.
     outputDir: "../../../public",
     publicPath: "/",
-
-    // modify the location of the generated HTML file.
     indexPath: "../resources/views/home.blade.php",
     pwa: {
         name: "DevDo",
@@ -31,5 +26,6 @@ module.exports = {
             navigateFallback: "/",
             skipWaiting: true
         }
-    }
+    },
+    transpileDependencies: ["vuetify"]
 };
