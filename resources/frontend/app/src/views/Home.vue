@@ -1,11 +1,11 @@
 <template>
-<v-container>
+  <v-container>
     <v-row>
-        <v-col>
-            <v-btn class="float-right">Login</v-btn>
-        </v-col>
+      <v-col>
+        <v-btn class="float-right" @click="$router.push('login')">Login</v-btn>
+      </v-col>
     </v-row>
-</v-container>
+  </v-container>
 </template>
 
 <script>
@@ -13,6 +13,6 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-    name: "Home"
+  name: "Home"
 };
 </script>

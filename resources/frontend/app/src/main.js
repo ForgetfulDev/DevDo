@@ -6,8 +6,10 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@fortawesome/fontawesome-free/css/all.css";
+import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm';
 
 Vue.config.productionTip = false;
+Vue.component('ValidationProvider', ValidationProvider);
 
 new Vue({
     router,

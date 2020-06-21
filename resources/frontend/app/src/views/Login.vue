@@ -1,42 +1,42 @@
 <template>
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column">
-                    <div class="field">
-                        <p class="control has-icons-left has-icons-right">
-                            <input
-                                class="input"
-                                v-model="email"
-                                type="email"
-                                placeholder="Email"
-                            />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="icon is-small is-right">
-                                <i class="fas fa-check"></i>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <!-- <b-field label="Password">
-            <b-input type="password" v-model="password" password-reveal></b-input>
-          </b-field> -->
-                </div>
-            </div>
-        </div>
-    </section>
+  <v-container>
+    <v-main>
+      <v-row>
+        <v-col>
+          <v-card>
+            <v-card-title>Login</v-card-title>
+            <v-card-text>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                  {{errors}}
+                  <v-text-field type="email" autofocus v-model="email" label="E-mail" :class="errors.length != 0 ? 'error--text' : 'success--text'"></v-text-field>
+                  <span>{{ errors[0] }}</span>
+                </ValidationProvider>
+
+                <v-text-field
+                  prepend-icon="mdi-shield-lock"
+                  type="password"
+                  v-model="password"
+                  label="Password"
+                ></v-text-field>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn :disabled="!email || !password" color="primary">Login</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-main>
+  </v-container>
 </template>
 
 <script>
 export default {
-    data: () => ({
-        email: null,
-        password: null
-    })
+  data: () => ({
+    valid: null,
+    email: null,
+    password: null
+  })
 };
 </script>
