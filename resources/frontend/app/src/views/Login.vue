@@ -7,7 +7,7 @@
             <v-card-title>Login</v-card-title>
             <v-card-text>
                 <!-- eslint-disable -->
-              <ValidationObserver ref="observer" v-slot="{ validate, reset }">
+              <ValidationObserver ref="observer">
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                     <v-text-field
