@@ -38,12 +38,13 @@ class AuthController extends Controller
             return response(['message' => 'Invalid Credentials']);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        $accessToken = auth()->user()->createToken('auth_token')->accessToken;
 
         return response(['user' => auth()->user(), 'access_token' => $accessToken]);
     }
 
-    public function logout (Request $request) {
+    public function logout(Request $request)
+    {
         $token = $request->user()->token();
         $token->revoke();
         return response()->json(['message' => 'You have been successfully logged out!']);
