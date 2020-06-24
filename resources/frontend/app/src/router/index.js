@@ -1,9 +1,13 @@
 import Vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
-
-Vue.use(VueRouter);
+import auth from "@websanova/vue-auth";
+import config from "../plugins/vue-auth";
+import VueResource from "vue-resource";
+Vue.use(VueResource);
 
 const routes = [
     {
@@ -31,5 +35,10 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 });
+
+Vue.router = router;
+Vue.use(VueAxios, axios);
+axios.defaults.baseURL = `/`;
+Vue.use(auth, config);
 
 export default router;
