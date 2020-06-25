@@ -6,8 +6,6 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import auth from "@websanova/vue-auth";
 import config from "../plugins/vue-auth";
-import VueResource from "vue-resource";
-Vue.use(VueResource);
 
 const routes = [
     {
