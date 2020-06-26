@@ -35,8 +35,8 @@ const router = new VueRouter({
 });
 
 Vue.router = router;
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 Vue.use(VueAxios, axios);
-axios.defaults.baseURL = `/`;
 Vue.use(auth, config);
 
 export default router;
