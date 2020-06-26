@@ -2,10 +2,10 @@ import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
+import Home from "./../views/Home.vue";
+import Login from "./../views/Login.vue";
 import auth from "@websanova/vue-auth";
-import config from "../plugins/vue-auth";
+import config from "./../plugins/vue-auth";
 
 const routes = [
     {
