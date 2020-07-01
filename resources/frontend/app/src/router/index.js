@@ -7,6 +7,8 @@ import Login from "./../views/Login.vue";
 import auth from "@websanova/vue-auth";
 import config from "./../plugins/vue-auth";
 
+Vue.use(VueRouter);
+
 const routes = [
     {
         path: "/",
@@ -30,7 +32,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    base: process.env.BASE_URL,
+    base: process.env.VUE_APP_API_URL,
     routes
 });
 

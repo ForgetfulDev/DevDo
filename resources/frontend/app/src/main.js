@@ -13,6 +13,7 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.router = router;
 
+
 new Vue({
     router,
     store,
