@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,12 +15,17 @@ class AuthController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:55',
             'email' => 'email|required|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ]);
 
+        $company = new Company;
+        $company->name = "Admin";
+        $company->save();
+        $validatedData["company_id"] = $company->id;
+        
         $validatedData['password'] = Hash::make($request->password);
         $validatedData['remember_token'] = Str::random(10);
-
+        
         $user = User::create($validatedData);
 
         $accessToken = $user->createToken('auth_token')->accessToken;

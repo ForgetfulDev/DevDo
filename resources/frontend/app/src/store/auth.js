@@ -35,20 +35,16 @@ export default {
             });
         },
         register(context, data) {
+            console.log(data);
             data = data || {};
             return new Promise((resolve, reject) => {
                 Vue.auth
                     .register({
                         url: "auth/register",
-                        data: this.form.body,
-                        autoLogin: false
+                        data: data
                     })
                     .then(() => {
-                        if (data.autoLogin) {
-                            context
-                                .dispatch("login", data)
-                                .then(resolve, reject);
-                        }
+                        context.dispatch("login", data).then(resolve, reject);
                     }, reject);
             });
         },

@@ -4,10 +4,19 @@
       <v-row>
         <v-col>
           <v-card>
-            <v-card-title>Login</v-card-title>
+            <v-card-title>Register</v-card-title>
             <v-card-text>
               <ValidationObserver ref="observer">
                 <v-form ref="form" v-model="valid" lazy-validation>
+                  <ValidationProvider name="name" rules="required" v-slot="{ errors }">
+                    <v-text-field
+                      prepend-icon="fas fa-envelope"
+                      autofocus
+                      v-model="name"
+                      label="Name"
+                      :error-messages="errors"
+                    ></v-text-field>
+                  </ValidationProvider>
                   <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                     <v-text-field
                       prepend-icon="fas fa-envelope"
@@ -31,7 +40,7 @@
               </ValidationObserver>
             </v-card-text>
             <v-card-actions>
-              <v-btn @click="submit" :disabled="!email || !password" color="primary">Login</v-btn>
+              <v-btn @click="submit" :disabled="!email || !password" color="primary">Register</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -41,19 +50,25 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data: () => ({
+    name: null,
     valid: null,
     email: null,
     password: null
   }),
   methods: {
+    ...mapActions({
+      register: 'auth/register'
+    }),
     submit() {
       this.$refs.observer.validate().then(result => {
-        if(!result) return;
-        
-      })
-    }
+        if (!result) return;
+        console.log(this.valid);
+        this.register({email: this.email, password: this.password, name: this.name});
+      });
+    },
   }
 };
 </script>
