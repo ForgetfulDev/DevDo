@@ -37,7 +37,7 @@ class AuthController extends Controller
     {
         $loginData = $request->validate([
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6|confirmed'
+            'password' => 'required|string|min:6'
         ]);
 
         if (!auth()->attempt($loginData)) {

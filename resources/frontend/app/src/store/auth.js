@@ -15,21 +15,10 @@ export default {
                 Vue.auth
                     .login({
                         url: "auth/login",
-                        data: this.form.body,
-                        remember: data.remember,
-                        staySignedIn: data.staySignedIn
+                        data: data,
                     })
                     .then(res => {
-                        if (data.remember) {
-                            Vue.auth.remember(
-                                JSON.stringify({
-                                    name: context.getters.user.first_name
-                                })
-                            );
-                        }
-                        Vue.router.push({
-                            name: context.getters.user.type + "-landing"
-                        });
+                        console.log(res)
                         resolve(res);
                     }, reject);
             });

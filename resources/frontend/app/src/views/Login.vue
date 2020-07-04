@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data: () => ({
     valid: null,
@@ -48,10 +49,13 @@ export default {
     password: null
   }),
   methods: {
+    ...mapActions({
+      login: 'auth/login'
+    }),
     submit() {
       this.$refs.observer.validate().then(result => {
         if(!result) return;
-        
+        this.login({email: this.email, password: this.password});
       })
     }
   }
