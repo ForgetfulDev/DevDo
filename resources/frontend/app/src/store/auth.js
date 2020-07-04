@@ -14,7 +14,7 @@ export default {
             return new Promise((resolve, reject) => {
                 Vue.auth
                     .login({
-                        url: "auth/login",
+                        url: "api/auth/login",
                         data: data,
                     })
                     .then(res => {
@@ -24,12 +24,11 @@ export default {
             });
         },
         register(context, data) {
-            console.log(data);
             data = data || {};
             return new Promise((resolve, reject) => {
                 Vue.auth
                     .register({
-                        url: "auth/register",
+                        url: "api/auth/register",
                         data: data
                     })
                     .then(() => {
