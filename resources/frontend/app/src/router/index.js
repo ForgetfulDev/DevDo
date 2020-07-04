@@ -3,6 +3,7 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import VueRouter from "vue-router";
 import Home from "./../views/Home.vue";
+import Dashboard from "./../views/Dashboard.vue";
 import Login from "./../views/Login.vue";
 import Register from "./../views/Register.vue";
 import auth from "@websanova/vue-auth";
@@ -26,6 +27,14 @@ const routes = [
         name: "Register",
         component: Register
     },
+    {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: Dashboard,
+        meta: {
+            auth: true
+        }
+    }
     // {
     //     path: "/about",
     //     name: "About",

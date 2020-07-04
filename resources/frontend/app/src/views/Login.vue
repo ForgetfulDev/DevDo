@@ -48,6 +48,9 @@ export default {
     email: null,
     password: null
   }),
+  mounted() {
+    console.log(this.$auth.user());
+  },
   methods: {
     ...mapActions({
       login: 'auth/login'
@@ -55,7 +58,9 @@ export default {
     submit() {
       this.$refs.observer.validate().then(result => {
         if(!result) return;
-        this.login({email: this.email, password: this.password});
+        this.login({email: this.email, password: this.password}).then(() => {
+          this.$router.push('\dashboard');
+        });
       })
     }
   }
