@@ -28,8 +28,5 @@ new Vue({
     router,
     store,
     vuetify,
-    // http: {
-    //     root: process.env.VUE_APP_API_URL
-    // },
     render: h => h(App)
 }).$mount("#app");

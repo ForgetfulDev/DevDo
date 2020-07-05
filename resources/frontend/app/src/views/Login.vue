@@ -27,6 +27,7 @@
                       label="Password"
                     ></v-text-field>
                   </ValidationProvider>
+                  <v-checkbox v-model="remember_me" label="Remember Me"></v-checkbox>
                 </v-form>
               </ValidationObserver>
             </v-card-text>
@@ -46,22 +47,18 @@ export default {
   data: () => ({
     valid: null,
     email: null,
-    password: null
+    password: null,
+    remember_me: false
   }),
-  mounted() {
-    console.log(this.$auth.user());
-  },
   methods: {
     ...mapActions({
-      login: 'auth/login'
+      login: "auth/login"
     }),
     submit() {
       this.$refs.observer.validate().then(result => {
-        if(!result) return;
-        this.login({email: this.email, password: this.password}).then(() => {
-          this.$router.push('\dashboard');
-        });
-      })
+        if (!result) return;
+        this.login({ email: this.email, password: this.password, remember_me: this.remember_me });
+      });
     }
   }
 };

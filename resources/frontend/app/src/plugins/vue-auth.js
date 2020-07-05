@@ -1,14 +1,11 @@
-import authBasic from "@websanova/vue-auth/dist/drivers/auth/basic.esm.js";
-// import httpVueResource from "@websanova/vue-auth/dist/drivers/http/vue-resource.1.x.esm.js";
-import httpAxios       from '@websanova/vue-auth/drivers/http/axios.1.x.js';
-import routerVueRouter from "@websanova/vue-auth/dist/drivers/router/vue-router.2.x.esm.js";
+import bearer from "@websanova/vue-auth/drivers/auth/bearer";
+import axios from "@websanova/vue-auth/drivers/http/axios.1.x";
+import router from "@websanova/vue-auth/dist/drivers/router/vue-router.2.x.esm.js";
 
 const config = {
-    auth: authBasic,
-    http: httpAxios,
-    router: routerVueRouter,
-    tokenStore: ["localStorage"],
-    tokenDefaultName: "DevDo",
+    auth: bearer,
+    http: axios,
+    router: router,
     registerData: {
         url: "/api/auth/register",
         method: "POST",
@@ -18,11 +15,11 @@ const config = {
         url: "/api/auth/login",
         method: "POST",
         redirect: "/dashboard",
-        fetchUser: false
+        fetchUser: true
     },
     fetchData: {
         url: "/api/auth/user",
-        method: "POST",
+        method: "GET",
         enabled: true
     },
     logoutData: {

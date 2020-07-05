@@ -15,10 +15,20 @@ export default {
                 Vue.auth
                     .login({
                         url: "api/auth/login",
-                        data: data,
+                        data: data
                     })
                     .then(res => {
-                        console.log(res)
+                        if (data.remember_me) {
+                            Vue.auth.remember(
+                                JSON.stringify({
+                                    name: context.getters.user.first_name
+                                })
+                            );
+                        }
+
+                        Vue.router.push({
+                            name: "Dashboard"
+                        });
                         resolve(res);
                     }, reject);
             });
