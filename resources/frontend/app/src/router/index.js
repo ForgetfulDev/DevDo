@@ -22,17 +22,11 @@ const routes = [
         path: "/login",
         name: "Login",
         component: Login,
-        meta: {
-            auth: false
-        }
     },
     {
         path: "/register",
         name: "Register",
         component: Register,
-        meta: {
-            auth: false
-        }
     },
     {
         path: "/dashboard",
@@ -45,8 +39,8 @@ const routes = [
                 path: "",
                 name: "Dashboard",
                 component: Dashboard
-            },
-        ],
+            }
+        ]
     }
     // {
     //     path: "/about",
@@ -60,7 +54,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    base: '/',
+    base: "/",
     routes
 });
 
