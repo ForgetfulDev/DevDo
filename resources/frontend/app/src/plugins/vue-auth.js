@@ -6,6 +6,8 @@ const config = {
     auth: bearer,
     http: axios,
     router: router,
+    tokenStore: ["localStorage"],
+    tokenDefaultName: "auth_devdo",
     registerData: {
         url: "/api/auth/register",
         method: "POST",

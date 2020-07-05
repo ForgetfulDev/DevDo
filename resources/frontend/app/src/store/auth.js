@@ -25,10 +25,6 @@ export default {
                                 })
                             );
                         }
-
-                        Vue.router.push({
-                            name: "Dashboard"
-                        });
                         resolve(res);
                     }, reject);
             });
