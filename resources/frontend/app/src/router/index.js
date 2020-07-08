@@ -5,6 +5,7 @@ import VueRouter from "vue-router";
 import Home from "./../views/Home.vue";
 import Layout from "./../Layout.vue";
 import Dashboard from "./../views/Dashboard.vue";
+import ProjectCreate from "./../views/ProjectCreate.vue";
 import Login from "./../views/Login.vue";
 import Register from "./../views/Register.vue";
 import VueAuth from "@websanova/vue-auth";
@@ -39,7 +40,12 @@ const routes = [
                 path: "",
                 name: "Dashboard",
                 component: Dashboard
-            }
+            },
+            {
+                path: "/project",
+                name: "Create Project",
+                component: ProjectCreate
+            },
         ]
     }
     // {

@@ -6,6 +6,16 @@
           <!-- todo: Add application logo -->
           APPLICATION LOGO
         </v-list-item>
+         <v-list-item-group v-model="model" mandatory color="indigo">
+        <v-list-item to="/project">
+          <v-list-item-icon>
+            <v-icon v-text="'fas fa-plus'"></v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>New Project</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item>
           <v-list-item-icon>
             <v-icon v-text="'fas fa-project-diagram'"></v-icon>
@@ -15,6 +25,7 @@
             <v-list-item-title>Projects</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
 
