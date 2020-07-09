@@ -42,7 +42,7 @@ class AuthController extends Controller
             ], 401);
         $user = $request->user();
         $tokenResult = $user->createToken('api_token');
-        return response('Successfully logged in!', 200, ['Authorization', 'Bearer ' . $tokenResult->plainTextToken]);
+        return response('Successfully logged in!', 200, ['Authorization' => 'Bearer ' . $tokenResult->plainTextToken]);
     }
 
     public function logout(Request $request)
