@@ -3,9 +3,12 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 import VueRouter from "vue-router";
 import Home from "./../views/Home.vue";
+import Layout from "./../Layout.vue";
+import Dashboard from "./../views/Dashboard.vue";
+import ProjectCreate from "./../views/ProjectCreate.vue";
 import Login from "./../views/Login.vue";
 import Register from "./../views/Register.vue";
-import auth from "@websanova/vue-auth";
+import VueAuth from "@websanova/vue-auth";
 import config from "./../plugins/vue-auth";
 
 Vue.use(VueRouter);
@@ -19,13 +22,32 @@ const routes = [
     {
         path: "/login",
         name: "Login",
-        component: Login
+        component: Login,
     },
     {
         path: "/register",
         name: "Register",
-        component: Register
+        component: Register,
     },
+    {
+        path: "/dashboard",
+        component: Layout,
+        meta: {
+            auth: true
+        },
+        children: [
+            {
+                path: "",
+                name: "Dashboard",
+                component: Dashboard
+            },
+            {
+                path: "/project",
+                name: "Create Project",
+                component: ProjectCreate
+            },
+        ]
+    }
     // {
     //     path: "/about",
     //     name: "About",
@@ -38,13 +60,13 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    base: process.env.VUE_APP_API_URL,
+    base: "/",
     routes
 });
 
 Vue.router = router;
-axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 Vue.use(VueAxios, axios);
-Vue.use(auth, config);
+axios.defaults.baseURL = `/`;
+Vue.use(VueAuth, config);
 
 export default router;

@@ -52,12 +52,11 @@ class AuthController extends Controller
             $token->save();
         }
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
+            'Authorization' => 'Bearer ' . $tokenResult->accessToken,
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString()
-        ]);
+        ])->header('Authorization', 'Bearer ' . $tokenResult->accessToken);
     }
 
     public function logout(Request $request)
@@ -65,5 +64,10 @@ class AuthController extends Controller
         $token = $request->user()->token();
         $token->revoke();
         return response()->json(['message' => 'You have been successfully logged out!']);
+    }
+
+    public function user(Request $request)
+    {
+        return $request->user();
     }
 }

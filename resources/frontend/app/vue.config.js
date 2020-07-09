@@ -12,6 +12,9 @@ module.exports = {
             allowedPlugins: ["define"]
         }
     },
+    devServer: {
+        proxy: "http://devdo.local"
+    },
     outputDir: "../../../public",
     publicPath: "/",
     indexPath: "../resources/views/home.blade.php",
