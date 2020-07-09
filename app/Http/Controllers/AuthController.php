@@ -24,12 +24,9 @@ class AuthController extends Controller
         $validatedData["company_id"] = 1;
         $validatedData['password'] = Hash::make($request->password);
         $validatedData['remember_token'] = Str::random(10);
-
         $user = User::create($validatedData);
-
-        $accessToken = $user->createToken('auth_token')->accessToken;
-
-        return response(['user' => $user, 'access_token' => $accessToken]);
+        $token = $user->createToken('api_token');
+        return response(['user' => $user, 'api_token' => $token->plainTextToken]);
     }
 
     public function login(Request $request)
@@ -37,7 +34,6 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
-            'remember_me' => 'boolean'
         ]);
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials))
@@ -46,17 +42,7 @@ class AuthController extends Controller
             ], 401);
         $user = $request->user();
         $tokenResult = $user->createToken('api_token');
-        $token = $tokenResult->token;
-        if ($request->remember_me) {
-            $token->expires_at = Carbon::now()->addWeeks(1);
-            $token->save();
-        }
-        return response()->json([
-            'Authorization' => 'Bearer ' . $tokenResult->accessToken,
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString()
-        ])->header('Authorization', 'Bearer ' . $tokenResult->accessToken);
+        return response('Successfully logged in!', 200, ['Authorization', 'Bearer ' . $tokenResult->plainTextToken]);
     }
 
     public function logout(Request $request)
