@@ -1,15 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import auth from "./auth.js";
-import actions from "./actions.js";
+import auth from "./modules/auth.js";
+import project from "./modules/project.js";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {},
     mutations: {},
-    actions: actions,
+    actions: {},
     modules: {
-        auth
+        auth,
+        project
     }
 });

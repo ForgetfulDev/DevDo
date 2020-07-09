@@ -36,11 +36,13 @@ export default {
     description: null
   }),
   methods: {
-    ...mapActions(["createProject"]),
+    ...mapActions({
+      create: "project/create"
+    }),
     submit() {
       this.$refs.observer.validate().then(result => {
         if (!result) return;
-        this.createProject({
+        this.create({
           name: this.name,
           description: this.description
         });

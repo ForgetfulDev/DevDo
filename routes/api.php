@@ -29,3 +29,7 @@ Route::prefix('auth')->group(function () {
         Route::get('user', 'AuthController@user');
     });
 });
+
+Route::prefix('project')->middleware('auth:sanctum')->group(function() {
+    Route::post('/', 'ProjectController@create');
+});
