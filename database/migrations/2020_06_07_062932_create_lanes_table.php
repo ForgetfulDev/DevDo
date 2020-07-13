@@ -15,13 +15,13 @@ class CreateLanesTable extends Migration
     {
         Schema::create('lanes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('board_id');
+            $table->unsignedBigInteger('project_id');
             $table->string('name');
             $table->string('description');
             $table->timestamps();
             $table->softDeletesTz();
 
-            $table->foreign('board_id')->references('id')->on('boards');
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

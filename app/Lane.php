@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lane extends Model
 {
-    public function board()
+    public function project()
     {
-        return $this->belongsTo(Board::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function cards()

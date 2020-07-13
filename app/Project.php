@@ -11,8 +11,8 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function boards()
+    public function lanes()
     {
-        return $this->hasMany(Board::class);
+        return $this->hasMany(Lane::class);
     }
 }
