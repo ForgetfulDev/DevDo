@@ -26,10 +26,9 @@ class AuthController extends Controller
         $validatedData['remember_token'] = Str::random(10);
 
         $user = User::create($validatedData);
+        $token = $user->createToken('auth-token');
 
-        $accessToken = $user->createToken('auth_token')->accessToken;
-
-        return response(['user' => $user, 'access_token' => $accessToken]);
+        return response(['user' => $user, 'access_token' => $token->plainTextToken]);
     }
 
     public function login(Request $request)
@@ -61,8 +60,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $token = $request->user()->token();
-        $token->revoke();
+        $request->user()->tokens()->delete();
         return response()->json(['message' => 'You have been successfully logged out!']);
     }
 
