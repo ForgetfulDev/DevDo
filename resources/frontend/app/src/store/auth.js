@@ -1,4 +1,5 @@
 import Vue from "vue";
+import axios from "axios";
 
 export default {
     namespaced: true,
@@ -11,36 +12,46 @@ export default {
         },
         login(context, data) {
             data = data || {};
-            return new Promise((resolve, reject) => {
-                Vue.auth
-                    .login({
-                        url: "api/auth/login",
-                        data: data
-                    })
-                    .then(res => {
-                        if (data.remember_me) {
-                            Vue.auth.remember(
-                                JSON.stringify({
-                                    name: context.getters.user.first_name
-                                })
-                            );
-                        }
-                        resolve(res);
-                    }, reject);
+            return axios.get("/sanctum/csrf-cookie").then(() => {
+                return Vue.auth.login({
+                    url: "api/auth/login",
+                    data: data
+                });
+                // axios.post("/api/auth/login", data).then(response => {
+                // });
             });
+            // return new Promise((resolve, reject) => {
+            //     Vue.auth
+            //         .login({
+            //             url: "api/auth/login",
+            //             data: data
+            //         })
+            //         .then(res => {
+            //             if (data.remember_me) {
+            //                 Vue.auth.remember(
+            //                     JSON.stringify({
+            //                         name: context.getters.user.first_name
+            //                     })
+            //                 );
+            //             }
+            //             resolve(res);
+            //         }, reject);
+            // });
         },
         register(context, data) {
             data = data || {};
-            return new Promise((resolve, reject) => {
-                Vue.auth
-                    .register({
-                        url: "api/auth/register",
-                        data: data
-                    })
-                    .then(() => {
-                        context.dispatch("login", data).then(resolve, reject);
-                    }, reject);
-            });
+            return axios.get("/sanctum/csrf-cookie").then(() => {
+                return new Promise((resolve, reject) => {
+                    Vue.auth
+                        .register({
+                            url: "api/auth/register",
+                            data: data
+                        })
+                        .then(() => {
+                            context.dispatch("login", data).then(resolve, reject);
+                        }, reject);
+                });
+            })
         },
         impersonate(context, data) {
             Vue.auth.impersonate({
