@@ -17,26 +17,7 @@ export default {
                     url: "api/auth/login",
                     data: data
                 });
-                // axios.post("/api/auth/login", data).then(response => {
-                // });
             });
-            // return new Promise((resolve, reject) => {
-            //     Vue.auth
-            //         .login({
-            //             url: "api/auth/login",
-            //             data: data
-            //         })
-            //         .then(res => {
-            //             if (data.remember_me) {
-            //                 Vue.auth.remember(
-            //                     JSON.stringify({
-            //                         name: context.getters.user.first_name
-            //                     })
-            //                 );
-            //             }
-            //             resolve(res);
-            //         }, reject);
-            // });
         },
         register(context, data) {
             data = data || {};
