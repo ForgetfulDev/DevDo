@@ -41,7 +41,7 @@
                                     </ValidationProvider>
                                     <ValidationProvider
                                         name="password"
-                                        rules="required|min:6|max:120|password:@confirm"
+                                        rules="required|min:6|max:120"
                                         v-slot="{ errors }"
                                     >
                                         <v-text-field
@@ -54,7 +54,7 @@
                                     </ValidationProvider>
                                     <ValidationProvider
                                         name="confirm"
-                                        rules="required|min:6|max:120"
+                                        rules="required|min:6|max:120|password:@password"
                                         v-slot="{ errors }"
                                     >
                                         <v-text-field

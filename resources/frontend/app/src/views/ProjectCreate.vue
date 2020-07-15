@@ -29,18 +29,19 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { createNamespacedHelpers } from "vuex";
+const { mapActions } = createNamespacedHelpers("project");
 export default {
   data: () => ({
     name: null,
     description: null
   }),
   methods: {
-    ...mapActions(["createProject"]),
+    ...mapActions(["create"]),
     submit() {
       this.$refs.observer.validate().then(result => {
         if (!result) return;
-        this.createProject({
+        this.create({
           name: this.name,
           description: this.description
         });

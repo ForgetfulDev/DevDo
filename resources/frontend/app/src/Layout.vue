@@ -5,8 +5,8 @@
                 <v-list-item>
                     <!-- todo: Add application logo -->
                     APPLICATION LOGO
+                    {{projects}}
                 </v-list-item>
-                <!-- <v-list-item-group v-model="model" mandatory color="indigo"> -->
                 <v-list-item to="/project">
                     <v-list-item-icon>
                         <v-icon v-text="'fas fa-plus'"></v-icon>
@@ -21,37 +21,22 @@
                     prepend-icon="fas fa-project-diagram"
                 >
                     <template v-slot:activator>
-                        <v-list-item-content>
-                            <v-list-item-title>
-                                Projects
-                            </v-list-item-title>
-                        </v-list-item-content>
+                        <v-list-item>
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    Projects
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
                     </template>
-                    <v-list-item
-                        v-for="(child, i) in item.children"
-                        :key="i"
-                        link
-                    >
-                        <v-list-item-action v-if="child.icon">
-                            <v-icon>{{ child.icon }}</v-icon>
-                        </v-list-item-action>
+                    <v-list-item v-for="(project, i) in all" :key="i" link>
                         <v-list-item-content>
                             <v-list-item-title>
-                                {{ child.text }}
+                                {{ project.name }}
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-group>
-                <!-- <v-list-item>
-          <v-list-item-icon>
-            <v-icon v-text="'fas fa-project-diagram'"></v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>Projects</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item> -->
-                <!-- </v-list-item-group> -->
             </v-list>
         </v-navigation-drawer>
 
@@ -75,9 +60,23 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers("project");
+
 export default {
     data: () => ({
-        drawer: false
-    })
+        drawer: false,
+        projects: null,
+        model: null,
+    }),
+    mounted() {
+        this.get();
+    },
+    computed: {
+        ...mapGetters(["all"])
+    },
+    methods: {
+        ...mapActions(["get"])
+    }
 };
 </script>
