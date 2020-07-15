@@ -5,7 +5,6 @@
                 <v-list-item>
                     <!-- todo: Add application logo -->
                     APPLICATION LOGO
-                    {{projects}}
                 </v-list-item>
                 <v-list-item to="/project">
                     <v-list-item-icon>
