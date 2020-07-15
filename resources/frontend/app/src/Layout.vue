@@ -28,7 +28,7 @@
                             </v-list-item-content>
                         </v-list-item>
                     </template>
-                    <v-list-item v-for="(project, i) in all" :key="i" link>
+                    <v-list-item v-for="(project, i) in all" :key="i" link :to="`/project/${project.id}`">
                         <v-list-item-content>
                             <v-list-item-title>
                                 {{ project.name }}
