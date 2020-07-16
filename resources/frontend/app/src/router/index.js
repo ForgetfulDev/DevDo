@@ -6,6 +6,7 @@ import Home from "./../views/Home.vue";
 import Layout from "./../Layout.vue";
 import Dashboard from "./../views/Dashboard.vue";
 import ProjectCreate from "./../views/ProjectCreate.vue";
+import Project from "./../views/Project.vue";
 import Login from "./../views/Login.vue";
 import Register from "./../views/Register.vue";
 import VueAuth from "@websanova/vue-auth";
@@ -45,6 +46,12 @@ const routes = [
                 path: "/project",
                 name: "Create Project",
                 component: ProjectCreate
+            },
+            {
+                path: "/project/:project_id",
+                props: true,
+                name: "Project",
+                component: Project
             },
         ]
     }

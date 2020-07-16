@@ -16,10 +16,11 @@ export default {
     },
     getters: {
         all(state) {
-            console.log("getting state");
-            console.log(state.projects);
             return state.projects;
-        }
+        },
+        byId: state => id => {
+            return state.projects.find(project => project.id == id);
+        },
     },
     state: () => ({
         projects: []

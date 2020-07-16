@@ -40,7 +40,7 @@
         </v-navigation-drawer>
 
         <v-app-bar app>
-            <v-btn @click="drawer = !drawer">Login</v-btn>
+            <v-btn @click="drawer = !drawer"><v-icon>fas fa-bars</v-icon></v-btn>
         </v-app-bar>
 
         <!-- Sizes your content based upon application components -->
