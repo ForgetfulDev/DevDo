@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanesTable extends Migration
+class CreateColumnsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLanesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lanes', function (Blueprint $table) {
+        Schema::create('columns', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('project_id');
             $table->string('name');
@@ -32,6 +32,6 @@ class CreateLanesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lanes');
+        Schema::dropIfExists('columns');
     }
 }

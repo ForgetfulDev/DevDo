@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lane extends Model
+class Column extends Model
 {
     public function project()
     {

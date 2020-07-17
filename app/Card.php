@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    public function lane()
+    public function column()
     {
-        return $this->belongsTo(Lane::class);
+        return $this->belongsTo(Column::class);
     }
 
     public function tasks()
