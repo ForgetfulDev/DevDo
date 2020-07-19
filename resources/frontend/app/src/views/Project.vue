@@ -4,6 +4,11 @@
             Project {{byId(project_id).name}}
         </v-col>
     </v-row>
+    <v-row>
+        <v-col>
+            
+        </v-col>
+    </v-row>
 </template>
 
 <script>
@@ -13,6 +18,7 @@ export default {
     props: ["project_id"],
     computed: {
         ...mapGetters(["byId"])
+        //TODO: get columns
     }
 }
 </script>
