@@ -1,13 +1,12 @@
 <template>
     <v-row>
+        <v-col> Project {{ byId(project_id).name }} </v-col>
         <v-col>
-            Project {{byId(project_id).name}}
+            <v-btn color="primary"><v-icon>fas fa-plus</v-icon></v-btn>
         </v-col>
     </v-row>
     <v-row>
-        <v-col>
-            
-        </v-col>
+        <v-col> </v-col>
     </v-row>
 </template>
 
@@ -20,5 +19,5 @@ export default {
         ...mapGetters(["byId"])
         //TODO: get columns
     }
-}
+};
 </script>
