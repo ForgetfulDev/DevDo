@@ -6,7 +6,12 @@
 
 <script>
 export default {
-    //todo: get cards
-    
+     components: {
+        ProjectColumn
+    },
+    props: ["project_id"],
+    computed: {
+        ...mapGetters(["byId"])
+    }
 }
 </script>

@@ -3,31 +3,31 @@ import axios from "axios";
 export default {
     namespaced: true,
     actions: {
-        get({ commit }) {
-            return axios.get("/api/project").then(res => {
+        get({ commit }, project_id) {
+            return axios.get(`/api/project/${project_id}/columns`).then(res => {
                 commit("set", res.data);
             });
         },
         create({ dispatch }, payload) {
-            return axios.post("/api/project", payload).then(res => {
+            return axios.post("/api/column", payload).then(res => {
                 dispatch("get");
             });
         },
     },
     getters: {
         all(state) {
-            return state.projects;
+            return state.columns;
         },
         byId: state => id => {
-            return state.projects.find(project => project.id == id);
+            return state.columns.find(column => column.id == id);
         },
     },
     state: () => ({
-        projects: []
+        columns: []
     }),
     mutations: {
         set(state, payload) {
-            state.projects = payload;
+            state.columns = payload;
         }
     }
 };
