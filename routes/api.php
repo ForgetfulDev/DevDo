@@ -36,5 +36,9 @@ Route::group([
     Route::prefix('project')->group(function () {
         Route::get('/', 'ProjectController@get');
         Route::post('/', 'ProjectController@create');
+        Route::get('/{project}/columns', 'ColumnController@get');
+    });
+    Route::prefix('column')->group(function () {
+        Route::post('/', 'ColumnController@create');
     });
 });
