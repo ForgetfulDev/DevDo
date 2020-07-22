@@ -5,25 +5,20 @@
             <v-btn color="primary"><v-icon>fas fa-plus</v-icon></v-btn>
         </v-col>
     </v-row>
-    <v-row>
-        <v-col>
-            <project-column v-for=""></project-column>
-        </v-col>
-    </v-row>
+    <columns :project_id="project_id"></columns>
 </template>
 
 <script>
-import ProjectColumn from "../components/ProjectColumn.vue"
+import Columns from "../components/Columns.vue"
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("project");
 export default {
     components: {
-        ProjectColumn
+        Columns
     },
     props: ["project_id"],
     computed: {
         ...mapGetters(["byId"])
-        //TODO: get columns
     }
 };
 </script>

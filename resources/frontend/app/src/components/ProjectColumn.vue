@@ -1,17 +1,11 @@
 <template>
     <div>
-
+        {{column}}
     </div>
 </template>
 
 <script>
 export default {
-     components: {
-        ProjectColumn
-    },
-    props: ["project_id"],
-    computed: {
-        ...mapGetters(["byId"])
-    }
+    props: ["column"],
 }
 </script>
