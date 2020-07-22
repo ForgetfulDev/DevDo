@@ -1,7 +1,7 @@
 <template>
     <v-row>
         <v-col>
-            <project-column v-for="column in this.all" :column="column"></project-column>
+            <project-column v-for="column in this.all" :key="column.id" :column="column"></project-column>
         </v-col>
     </v-row>
 </template>

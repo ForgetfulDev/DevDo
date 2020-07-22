@@ -2,25 +2,23 @@
     <div class="text-center">
         <v-dialog v-model="dialog" width="500">
             <template v-slot:activator="{ on, attrs }">
-                <v-btn icon v-bind="attrs" v-on="on">
-                    <v-icon>fa fas-plus</v-icon>
+                testing!
+                <v-btn icon v-bind="attrs" v-on="on" @click="dialog = true">
+                    <v-icon>fas fa-plus</v-icon>
                 </v-btn>
             </template>
 
             <v-card>
                 <v-card-title class="headline grey lighten-2">
-                    Privacy Policy
+                    Create a column
                 </v-card-title>
 
                 <v-card-text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    <v-row>
+                        <v-col>
+                            
+                        </v-col>
+                    </v-row>
                 </v-card-text>
 
                 <v-divider></v-divider>
