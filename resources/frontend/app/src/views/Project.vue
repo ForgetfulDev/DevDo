@@ -2,7 +2,7 @@
     <v-row>
         <v-col> Project {{ byId(project_id).name }} </v-col>
         <v-col>
-            <v-btn color="primary"><v-icon>fas fa-plus</v-icon></v-btn>
+            <column-create-dialog></column-create-dialog>
         </v-col>
     </v-row>
     <columns :project_id="project_id"></columns>
@@ -10,11 +10,13 @@
 
 <script>
 import Columns from "../components/Columns.vue"
+import ColumnCreateDialog from "../components/ColumnCreateDialog.vue"
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("project");
 export default {
     components: {
-        Columns
+        Columns,
+        ColumnCreateDialog
     },
     props: ["project_id"],
     computed: {
