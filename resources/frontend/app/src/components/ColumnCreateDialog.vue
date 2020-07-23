@@ -16,7 +16,7 @@
                 <v-card-text>
                     <v-row>
                         <v-col>
-                            
+                            <v-input-text name="text" rules="required" type="string" label="Name"></v-input-text>
                         </v-col>
                     </v-row>
                 </v-card-text>
@@ -35,11 +35,15 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        dialog: false,
-      }
+import VInputText from "./VInputText.vue";
+export default {
+    components: {
+        VInputText
     },
-  }
+    data() {
+        return {
+            dialog: false
+        };
+    }
+};
 </script>

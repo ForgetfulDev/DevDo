@@ -1,11 +1,11 @@
 <template>
-    <ValidationProvider name="" rules="" v-slot="{ errors }">
+    <ValidationProvider :name="name" :rules="rules" v-slot="{ errors }">
         <v-text-field
-            prepend-icon=""
-            type=""
+            :prepend-icon="icon"
+            :type="type"
             autofocus
             v-model="input"
-            label=""
+            :label="label"
             :error-messages="errors"
         ></v-text-field>
     </ValidationProvider>
@@ -13,11 +13,14 @@
 
 <script>
 export default {
-    props: {
-        
-    },
+    props: ["name", "rules", "icon", "type", "label"],
     data: () => ({
         input: null,
-    })
+    }),
+    watch: {
+        input(updated) {
+            this.$emit('input', updated);
+        }
+    },
 }
 </script>
