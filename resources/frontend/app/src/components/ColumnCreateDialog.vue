@@ -14,36 +14,40 @@
                 </v-card-title>
 
                 <v-card-text>
-                    <v-row>
-                        <v-col>
-                            <v-input-text
-                                name="name"
-                                rules="required"
-                                type="string"
-                                label="Name"
-                                @input="setName"
-                            ></v-input-text>
-                        </v-col>
-                    </v-row>
-                    <v-row>
-                        <v-col>
-                            <v-input-text
-                                name="description"
-                                rules="required"
-                                type="string"
-                                label="Description"
-                                @input="setDescription"
-                            ></v-input-text>
-                        </v-col>
-                    </v-row>
+                    <ValidationObserver ref="observer">
+                        <v-form ref="form" v-model="valid" lazy-validation>
+                            <v-row>
+                                <v-col>
+                                    <v-input-text
+                                        name="name"
+                                        rules="required"
+                                        type="string"
+                                        label="Name"
+                                        @input="setName"
+                                    ></v-input-text>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col>
+                                    <v-input-text
+                                        name="description"
+                                        rules="required"
+                                        type="string"
+                                        label="Description"
+                                        @input="setDescription"
+                                    ></v-input-text>
+                                </v-col>
+                            </v-row>
+                        </v-form>
+                    </ValidationObserver>
                 </v-card-text>
 
                 <v-divider></v-divider>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="dialog = false">
-                        I accept
+                    <v-btn color="primary" text @click="submit()">
+                        Submit
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -53,6 +57,8 @@
 
 <script>
 import VInputText from "./VInputText.vue";
+import { createNamespacedHelpers } from "vuex";
+const { mapActions } = createNamespacedHelpers("column");
 export default {
     components: {
         VInputText
@@ -60,15 +66,27 @@ export default {
     data: () => ({
         dialog: false,
         name: null,
-        description: null
+        description: null,
+        valid: false,
     }),
     methods: {
+        ...mapActions(["create"]),
+        submit() {
+            this.$refs.observer.validate().then(result => {
+                if (!result) return;
+                this.create({
+                    name: this.name,
+                    description: this.description
+                });
+                this.dialog = false;
+            });
+        },
         setDescription(value) {
             this.description = value;
         },
         setName(value) {
-            this.name = value
-        },
+            this.name = value;
+        }
     }
 };
 </script>

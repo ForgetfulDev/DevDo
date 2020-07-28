@@ -1,6 +1,5 @@
 <template>
     <v-row>
-    test
         <v-col>
             <project-column v-for="column in this.all" :key="column.id" :column="column"></project-column>
         </v-col>
