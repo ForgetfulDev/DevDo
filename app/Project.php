@@ -13,8 +13,8 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function lanes()
+    public function columns()
     {
-        return $this->hasMany(Lane::class);
+        return $this->hasMany(Column::class);
     }
 }

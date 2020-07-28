@@ -63,6 +63,7 @@ export default {
     components: {
         VInputText
     },
+    props: ["project_id"],
     data: () => ({
         dialog: false,
         name: null,
@@ -76,7 +77,8 @@ export default {
                 if (!result) return;
                 this.create({
                     name: this.name,
-                    description: this.description
+                    description: this.description,
+                    project_id: this.project_id
                 });
                 this.dialog = false;
             });

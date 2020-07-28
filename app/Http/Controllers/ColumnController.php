@@ -10,7 +10,7 @@ class ColumnController extends Controller
 {
     public function get(Request $request, Project $project)
     {
-        return $project->columns;
+        return $project->columns->toJson();
     }
 
     public function create(Request $request)
@@ -18,6 +18,7 @@ class ColumnController extends Controller
         Column::create([
             'name' => $request->name,
             'description' => $request->description,
+            'project_id' => $request->project_id
         ]);
 
         return response()->json(["message" => "Column created successfully!"]);
