@@ -16,7 +16,24 @@
                 <v-card-text>
                     <v-row>
                         <v-col>
-                            <v-input-text name="text" rules="required" type="string" label="Name"></v-input-text>
+                            <v-input-text
+                                name="name"
+                                rules="required"
+                                type="string"
+                                label="Name"
+                                @input="setName"
+                            ></v-input-text>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col>
+                            <v-input-text
+                                name="description"
+                                rules="required"
+                                type="string"
+                                label="Description"
+                                @input="setDescription"
+                            ></v-input-text>
                         </v-col>
                     </v-row>
                 </v-card-text>
@@ -40,10 +57,18 @@ export default {
     components: {
         VInputText
     },
-    data() {
-        return {
-            dialog: false
-        };
+    data: () => ({
+        dialog: false,
+        name: null,
+        description: null
+    }),
+    methods: {
+        setDescription(value) {
+            this.description = value;
+        },
+        setName(value) {
+            this.name = value
+        },
     }
 };
 </script>

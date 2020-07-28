@@ -10,7 +10,7 @@ class ColumnController extends Controller
 {
     public function get(Request $request, Project $project)
     {
-        return $project->columns->toJson();
+        return $project->columns;
     }
 
     public function create(Request $request)
