@@ -14,19 +14,50 @@
                 </v-card-title>
 
                 <v-card-text>
-                    <v-row>
-                        <v-col>
-                            
-                        </v-col>
-                    </v-row>
+                    <ValidationObserver ref="observer">
+                        <v-row>
+                            <v-col>
+                                <ValidationProvider
+                                    name="name"
+                                    rules="required"
+                                    v-slot="{ errors }"
+                                >
+                                    <v-text-field
+                                        type="string"
+                                        autofocus
+                                        v-model="name"
+                                        label="Name"
+                                        :error-messages="errors"
+                                    ></v-text-field>
+                                </ValidationProvider>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <ValidationProvider
+                                    name="description"
+                                    rules="required"
+                                    v-slot="{ errors }"
+                                >
+                                    <v-text-field
+                                        type="string"
+                                        autofocus
+                                        v-model="description"
+                                        label="Description"
+                                        :error-messages="errors"
+                                    ></v-text-field>
+                                </ValidationProvider>
+                            </v-col>
+                        </v-row>
+                    </ValidationObserver>
                 </v-card-text>
 
                 <v-divider></v-divider>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="dialog = false">
-                        I accept
+                    <v-btn color="primary" text @click="submit()">
+                        Submit
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -35,11 +66,28 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
+import { createNamespacedHelpers } from "vuex";
+const { mapActions } = createNamespacedHelpers("column");
+export default {
+    props: ["project_id"],
+    data: () => ({
         dialog: false,
-      }
-    },
-  }
+        name: null,
+        description: null
+    }),
+    methods: {
+        ...mapActions(["create"]),
+        submit() {
+            this.$refs.observer.validate().then(result => {
+                if (!result) return;
+                this.create({
+                    name: this.name,
+                    description: this.description,
+                    project_id: this.project_id
+                });
+                this.dialog = false;
+            });
+        }
+    }
+};
 </script>

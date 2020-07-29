@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-row>
+        <v-row v-if="project_id && byId(project_id)">
             <v-col> Project {{ byId(project_id).name }} </v-col>
             <v-col>
-                <column-create-dialog></column-create-dialog>
+                <column-create-dialog :project_id="project_id"></column-create-dialog>
             </v-col>
         </v-row>
         <columns :project_id="project_id"></columns>

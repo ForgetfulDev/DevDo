@@ -18,6 +18,7 @@ class ColumnController extends Controller
         Column::create([
             'name' => $request->name,
             'description' => $request->description,
+            'project_id' => $request->project_id
         ]);
 
         return response()->json(["message" => "Column created successfully!"]);
