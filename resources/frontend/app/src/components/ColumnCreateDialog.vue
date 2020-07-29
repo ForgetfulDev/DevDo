@@ -15,30 +15,40 @@
 
                 <v-card-text>
                     <ValidationObserver ref="observer">
-                        <v-form ref="form" v-model="valid" lazy-validation>
-                            <v-row>
-                                <v-col>
-                                    <v-input-text
-                                        name="name"
-                                        rules="required"
+                        <v-row>
+                            <v-col>
+                                <ValidationProvider
+                                    name="name"
+                                    rules="required"
+                                    v-slot="{ errors }"
+                                >
+                                    <v-text-field
                                         type="string"
+                                        autofocus
+                                        v-model="name"
                                         label="Name"
-                                        @input="setName"
-                                    ></v-input-text>
-                                </v-col>
-                            </v-row>
-                            <v-row>
-                                <v-col>
-                                    <v-input-text
-                                        name="description"
-                                        rules="required"
+                                        :error-messages="errors"
+                                    ></v-text-field>
+                                </ValidationProvider>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col>
+                                <ValidationProvider
+                                    name="description"
+                                    rules="required"
+                                    v-slot="{ errors }"
+                                >
+                                    <v-text-field
                                         type="string"
+                                        autofocus
+                                        v-model="description"
                                         label="Description"
-                                        @input="setDescription"
-                                    ></v-input-text>
-                                </v-col>
-                            </v-row>
-                        </v-form>
+                                        :error-messages="errors"
+                                    ></v-text-field>
+                                </ValidationProvider>
+                            </v-col>
+                        </v-row>
                     </ValidationObserver>
                 </v-card-text>
 
@@ -56,19 +66,14 @@
 </template>
 
 <script>
-import VInputText from "./VInputText.vue";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("column");
 export default {
-    components: {
-        VInputText
-    },
     props: ["project_id"],
     data: () => ({
         dialog: false,
         name: null,
-        description: null,
-        valid: false,
+        description: null
     }),
     methods: {
         ...mapActions(["create"]),
@@ -82,12 +87,6 @@ export default {
                 });
                 this.dialog = false;
             });
-        },
-        setDescription(value) {
-            this.description = value;
-        },
-        setName(value) {
-            this.name = value;
         }
     }
 };

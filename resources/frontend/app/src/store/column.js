@@ -4,6 +4,7 @@ export default {
     namespaced: true,
     actions: {
         get({ commit }, project_id) {
+            console.log(project_id)
             return axios.get(`/api/project/${project_id}/columns`).then(res => {
                 commit("set", res.data);
             });
